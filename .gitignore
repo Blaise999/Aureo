@@ -1,0 +1,20 @@
+node_modules
+.next
+out
+.env*.local
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
+# Fetched from the client's media library, not authored here.
+# Run `npm run fetch-images` after cloning.
+public/images/*
+!public/images/.gitkeep
+
+# Editable content written by the admin panel
+/data
+public/uploads/*
+!public/uploads/.gitkeep
+config.bat
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
