@@ -1,0 +1,397 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Aureo La Union — tokens lifted from the existing site.
+
+   This is a like-for-like rebuild, so the values below are the ones the
+   live Hestia theme actually uses, not new choices. Gold #aa8a51 is the
+   theme accent, #E5E5E5 the page background, #363537 the top bar, and
+   Lato carries every level of type. Buttons keep the 15px radius and the
+   33px horizontal padding from the theme's button settings.
+   ========================================================================== */
+
+@theme {
+  --color-gold: #aa8a51;
+  --color-gold-dark: #967843;
+  --color-page: #e5e5e5;
+  --color-topbar: #363537;
+  --color-footer: #212121;
+  --color-body-text: #3c4858;
+  --color-muted: #999999;
+  --color-section-gray: #f5f5f5;
+  --color-hairline: #e0e0e0;
+
+  --font-lato: var(--font-lato-src), "Lato", Helvetica, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-page);
+  color: var(--color-body-text);
+  font-family: var(--font-lato);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+a {
+  color: var(--color-gold);
+  transition: color 0.25s ease;
+}
+
+a:hover {
+  color: var(--color-gold-dark);
+}
+
+/* --------------------------------------------------------------------------
+   Type scale — Hestia's, at its 769px+ breakpoint.
+   -------------------------------------------------------------------------- */
+
+.hestia-title {
+  font-family: var(--font-lato);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #3c4858;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+@media (min-width: 769px) {
+  .section-title {
+    font-size: 2.625rem; /* 42px */
+  }
+}
+
+.section-title-xxl {
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+@media (min-width: 769px) {
+  .section-title-xxl {
+    font-size: 3rem;
+  }
+}
+
+.description {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+@media (min-width: 769px) {
+  .description {
+    font-size: 1.125rem;
+  }
+}
+
+.info-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #3c4858;
+}
+
+/* --------------------------------------------------------------------------
+   The raised white card the theme floats over the header image.
+   -------------------------------------------------------------------------- */
+
+.main-raised {
+  position: relative;
+  z-index: 3;
+  margin: -60px 30px 0;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow:
+    0 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0 6px 30px 5px rgba(0, 0, 0, 0.12),
+    0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 830px) {
+  .main-raised {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+.section {
+  padding: 70px 0;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons — theme settings: 15px radius, 15px/33px padding, uppercase.
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 15px 33px;
+  border-radius: 15px;
+  border: 1px solid transparent;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-gold);
+  color: #fff;
+  box-shadow:
+    0 2px 2px 0 rgba(170, 138, 81, 0.14),
+    0 3px 1px -2px rgba(170, 138, 81, 0.2),
+    0 1px 5px 0 rgba(170, 138, 81, 0.12);
+}
+
+.btn-primary:hover {
+  color: #fff;
+  box-shadow:
+    0 14px 26px -12px rgba(170, 138, 81, 0.42),
+    0 4px 23px 0 rgba(0, 0, 0, 0.12),
+    0 8px 10px -5px rgba(170, 138, 81, 0.2);
+}
+
+.btn-white-outline {
+  border-color: rgba(255, 255, 255, 0.7);
+  color: #fff;
+}
+
+.btn-white-outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   Elementor divider — short centred gold rule under section headings.
+   -------------------------------------------------------------------------- */
+
+.divider {
+  display: block;
+  width: 60px;
+  height: 2px;
+  margin: 24px auto;
+  background: var(--color-gold);
+  border: 0;
+}
+
+.divider-left {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Header image + the theme's dark filter over it.
+   -------------------------------------------------------------------------- */
+
+.header-filter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Cards — used by the shop grid and the contact form panel.
+   -------------------------------------------------------------------------- */
+
+.card {
+  background: #fff;
+  border-radius: 6px;
+  box-shadow:
+    0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card-product:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0 6px 30px 5px rgba(0, 0, 0, 0.12);
+}
+
+.card-header-primary {
+  background: var(--color-gold);
+  color: #fff;
+  border-radius: 6px;
+  margin: -20px 15px 0;
+  padding: 20px;
+  box-shadow:
+    0 12px 20px -10px rgba(170, 138, 81, 0.28),
+    0 4px 20px 0 rgba(0, 0, 0, 0.12);
+}
+
+/* --------------------------------------------------------------------------
+   Form fields — theme uses a bottom rule that fills gold on focus.
+   -------------------------------------------------------------------------- */
+
+.field {
+  width: 100%;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 1px solid #d2d2d2;
+  background: transparent;
+  font-size: 0.875rem;
+  color: #3c4858;
+  transition: border-color 0.3s ease;
+}
+
+.field::placeholder {
+  color: #aaa;
+}
+
+.field:focus {
+  outline: none;
+  border-bottom-color: var(--color-gold);
+  border-bottom-width: 2px;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: #3c4858;
+  margin-bottom: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Carousel
+   -------------------------------------------------------------------------- */
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.carousel-dot[data-active="true"] {
+  background: var(--color-gold);
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-arrow:hover {
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   Navigation dropdowns
+   -------------------------------------------------------------------------- */
+
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 210px;
+  padding: 8px 0;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 22px rgba(0, 0, 0, 0.16);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease,
+    visibility 0.22s;
+}
+
+.nav-item:hover > .nav-dropdown,
+.nav-item:focus-within > .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-dropdown .nav-dropdown {
+  top: 0;
+  left: 100%;
+}
+
+.nav-link-underline::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0;
+  background: var(--color-gold);
+  transition: width 0.3s ease;
+}
+
+.nav-item:hover .nav-link-underline::after {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Motion preferences
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
